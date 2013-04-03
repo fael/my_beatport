@@ -47,8 +47,6 @@ class LabelsController extends AppController {
 				$this->Session->setFlash(__('The label could not be saved. Please, try again.'));
 			}
 		}
-		$tracks = $this->Label->Track->find('list');
-		$this->set(compact('tracks'));
 	}
 
 /**
@@ -73,8 +71,6 @@ class LabelsController extends AppController {
 			$options = array('conditions' => array('Label.' . $this->Label->primaryKey => $id));
 			$this->request->data = $this->Label->find('first', $options);
 		}
-		$tracks = $this->Label->Track->find('list');
-		$this->set(compact('tracks'));
 	}
 
 /**

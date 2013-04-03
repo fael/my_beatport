@@ -5,7 +5,6 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('title'); ?></th>
 			<th><?php echo $this->Paginator->sort('release_date'); ?></th>
-			<th><?php echo $this->Paginator->sort('beatport_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('isrc'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -16,7 +15,6 @@
 		<td><?php echo h($track['Track']['id']); ?>&nbsp;</td>
 		<td><?php echo h($track['Track']['title']); ?>&nbsp;</td>
 		<td><?php echo h($track['Track']['release_date']); ?>&nbsp;</td>
-		<td><?php echo h($track['Track']['beatport_id']); ?>&nbsp;</td>
 		<td><?php echo h($track['Track']['isrc']); ?>&nbsp;</td>
 		<td><?php echo h($track['Track']['created']); ?>&nbsp;</td>
 		<td><?php echo h($track['Track']['modified']); ?>&nbsp;</td>

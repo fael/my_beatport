@@ -4,7 +4,6 @@
 		<legend><?php echo __('Add Label'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
-		echo $this->Form->input('Track');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

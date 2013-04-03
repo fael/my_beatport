@@ -109,3 +109,6 @@ CakeLog::config('error', array(
 ));
 
 CakePlugin::load('DebugKit');
+
+Configure::write('Beatport.API.URL.MOST_POPULAR', 'http://api.beatport.com/catalog/3/most-popular/genre?');
+Configure::write('Beatport.API.URL.ALL_GENRES', 'http://api.beatport.com/catalog/3/genres');

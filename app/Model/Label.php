@@ -14,46 +14,27 @@ class Label extends AppModel {
  */
 	public $displayField = 'name';
 
-/**
- * Validation rules
- *
- * @var array
- */
-	public $validate = array(
-		'name' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * hasAndBelongsToMany associations
+ * hasMany associations
  *
  * @var array
  */
-	public $hasAndBelongsToMany = array(
+	public $hasMany = array(
 		'Track' => array(
 			'className' => 'Track',
-			'joinTable' => 'tracks_labels',
 			'foreignKey' => 'label_id',
-			'associationForeignKey' => 'track_id',
-			'unique' => 'keepExisting',
+			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
+			'exclusive' => '',
 			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
+			'counterQuery' => ''
 		)
 	);
 

@@ -32,10 +32,11 @@
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Title'); ?></th>
 		<th><?php echo __('Release Date'); ?></th>
-		<th><?php echo __('Beatport Id'); ?></th>
 		<th><?php echo __('Isrc'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
+		<th><?php echo __('Preview'); ?></th>
+		<th><?php echo __('Label Id'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
@@ -45,10 +46,11 @@
 			<td><?php echo $track['id']; ?></td>
 			<td><?php echo $track['title']; ?></td>
 			<td><?php echo $track['release_date']; ?></td>
-			<td><?php echo $track['beatport_id']; ?></td>
 			<td><?php echo $track['isrc']; ?></td>
 			<td><?php echo $track['created']; ?></td>
 			<td><?php echo $track['modified']; ?></td>
+			<td><?php echo $track['preview']; ?></td>
+			<td><?php echo $track['label_id']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'tracks', 'action' => 'view', $track['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'tracks', 'action' => 'edit', $track['id'])); ?>

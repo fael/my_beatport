@@ -3,9 +3,9 @@ App::uses('AppModel', 'Model');
 /**
  * Track Model
  *
+ * @property Label $Label
  * @property Artist $Artist
  * @property Genre $Genre
- * @property Label $Label
  */
 class Track extends AppModel {
 
@@ -22,9 +22,9 @@ class Track extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'title' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
+		'label_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -35,6 +35,21 @@ class Track extends AppModel {
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'Label' => array(
+			'className' => 'Label',
+			'foreignKey' => 'label_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
 
 /**
  * hasAndBelongsToMany associations
@@ -62,21 +77,6 @@ class Track extends AppModel {
 			'joinTable' => 'tracks_genres',
 			'foreignKey' => 'track_id',
 			'associationForeignKey' => 'genre_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		),
-		'Label' => array(
-			'className' => 'Label',
-			'joinTable' => 'tracks_labels',
-			'foreignKey' => 'track_id',
-			'associationForeignKey' => 'label_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',

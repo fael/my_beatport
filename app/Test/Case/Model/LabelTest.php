@@ -15,6 +15,10 @@ class LabelTest extends CakeTestCase {
 	public $fixtures = array(
 		'app.label',
 		'app.track',
+		'app.artist',
+		'app.tracks_artist',
+		'app.genre',
+		'app.tracks_genre',
 		'app.tracks_label'
 	);
 

@@ -47,10 +47,10 @@ class TracksController extends AppController {
 				$this->Session->setFlash(__('The track could not be saved. Please, try again.'));
 			}
 		}
+		$labels = $this->Track->Label->find('list');
 		$artists = $this->Track->Artist->find('list');
 		$genres = $this->Track->Genre->find('list');
-		$labels = $this->Track->Label->find('list');
-		$this->set(compact('artists', 'genres', 'labels'));
+		$this->set(compact('labels', 'artists', 'genres'));
 	}
 
 /**
@@ -75,10 +75,10 @@ class TracksController extends AppController {
 			$options = array('conditions' => array('Track.' . $this->Track->primaryKey => $id));
 			$this->request->data = $this->Track->find('first', $options);
 		}
+		$labels = $this->Track->Label->find('list');
 		$artists = $this->Track->Artist->find('list');
 		$genres = $this->Track->Genre->find('list');
-		$labels = $this->Track->Label->find('list');
-		$this->set(compact('artists', 'genres', 'labels'));
+		$this->set(compact('labels', 'artists', 'genres'));
 	}
 
 /**

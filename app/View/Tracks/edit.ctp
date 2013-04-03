@@ -6,7 +6,6 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('title');
 		echo $this->Form->input('release_date');
-		echo $this->Form->input('beatport_id');
 		echo $this->Form->input('isrc');
 		echo $this->Form->input('Artist');
 		echo $this->Form->input('Genre');

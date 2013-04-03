@@ -16,11 +16,6 @@
 			<?php echo h($track['Track']['release_date']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Beatport Id'); ?></dt>
-		<dd>
-			<?php echo h($track['Track']['beatport_id']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Isrc'); ?></dt>
 		<dd>
 			<?php echo h($track['Track']['isrc']); ?>
