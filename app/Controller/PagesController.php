@@ -7,18 +7,18 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       app.Controller
  * @since         CakePHP(tm) v 0.2.9
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 App::uses('AppController', 'Controller');
 
 /**
@@ -39,12 +39,25 @@ class PagesController extends AppController {
 	public $name = 'Pages';
 
 /**
+ * Default helper
+ *
+ * @var array
+ */
+	public $helpers = array('Html', 'Session');
+
+/**
  * This controller does not use a model
  *
  * @var array
  */
 	public $uses = array();
 
+	public function beforeFilter()
+	{
+		parent::beforeFilter();
+
+		$this->Auth->allow('home');
+	}
 /**
  * Displays a view
  *
@@ -71,5 +84,15 @@ class PagesController extends AppController {
 		}
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 		$this->render(implode('/', $path));
+	}
+
+
+	/* Public page to login */
+	public function home()
+	{
+		if( AuthComponent::user('id') ) 
+		{
+			$this->redirect(array('controller' => 'users','action' => 'home'));
+		}
 	}
 }

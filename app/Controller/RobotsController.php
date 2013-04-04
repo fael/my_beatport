@@ -7,6 +7,15 @@ App::uses('AppController', 'Controller');
  */
 class RobotsController extends AppController {
 	
+	public $components = array('DebugKit.Toolbar', 'Session', 'Auth', 'Session', 'Error');
+	
+	public function beforeFilter()
+	{
+		parent::beforeFilter();
+
+		$this->Auth->allow('*');
+	}
+
 	public function saveGenres() {
 		$perPage = 2;
 		$api_path = Configure::read('Beatport.API.URL.ALL_GENRES'); 
@@ -21,7 +30,7 @@ class RobotsController extends AppController {
 		$genreData = array('Genre' => $genres);
 		
 		debug($genreData);
-		$this->Genre->saveAll( $genreData['Genre'] );
+		// $this->Genre->saveAll( $genreData['Genre'] );
 		
 		$this->render(false);
 	}

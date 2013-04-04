@@ -108,7 +108,48 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
+
+Configure::write(
+	'Application', array(
+		'name' => 'My Beatport',
+		'from_email' => 'rafa@rafael-santos.com.com',
+		'contact_mail' => 'rafa@rafael-santos.com.com'
+	)
+);
+
+/**
+* Choose your application theme
+* The list of supported themes are:
+* 	-> default
+*	-> amelia
+*	-> cerulean
+*	-> cyborg
+*	-> journal
+*	-> readable
+*	-> simplex
+*	-> slate
+*	-> spacelab
+*	-> spruce
+*	-> superhero
+*	-> united
+*/
+Configure::write(
+	'Layout', array(
+		'theme' => 'slate'
+	)
+);
+
+App::uses('CakeEmail', 'Network/Email');
+
 CakePlugin::load('DebugKit');
 
-Configure::write('Beatport.API.URL.MOST_POPULAR', 'http://api.beatport.com/catalog/3/most-popular/genre?');
-Configure::write('Beatport.API.URL.ALL_GENRES', 'http://api.beatport.com/catalog/3/genres');
+Configure::write(
+	'Beatport', array(
+		'API' => array(
+			'URL' => array(
+				'MOST_POPULAR' => 'http://api.beatport.com/catalog/3/most-popular/genre?',
+				'ALL_GENRES' => 'http://api.beatport.com/catalog/3/genres'
+			)
+		)
+	)
+);

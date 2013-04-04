@@ -1,6 +1,6 @@
-<div class="tracks index">
+<div class="tracks index pull-right">
 	<h2><?php echo __('Tracks'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table cellpadding="0" cellspacing="0" class="table table-striped">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('title'); ?></th>
@@ -9,7 +9,7 @@
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
+	</tr> 
 	<?php foreach ($tracks as $track): ?>
 	<tr>
 		<td><?php echo h($track['Track']['id']); ?>&nbsp;</td>
@@ -23,7 +23,7 @@
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $track['Track']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $track['Track']['id']), null, __('Are you sure you want to delete # %s?', $track['Track']['id'])); ?>
 		</td>
-	</tr>
+	</tr> 
 <?php endforeach; ?>
 	</table>
 	<p>
@@ -40,7 +40,7 @@
 	?>
 	</div>
 </div>
-<div class="actions">
+<div class="actions span2 well">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Track'), array('action' => 'add')); ?></li>

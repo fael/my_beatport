@@ -7,12 +7,12 @@ App::uses('AppController', 'Controller');
  */
 class ArtistsController extends AppController {
 
-/**
- * Helpers
- *
- * @var array
- */
-	public $helpers = array('Text', 'Js', 'Time');
+	public function beforeFilter()
+	{
+		parent::beforeFilter();
+
+		$this->Auth->allow('*');
+	}
 
 /**
  * index method
