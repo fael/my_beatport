@@ -30,7 +30,7 @@
   echo $this->Html->css($this->params->controller . '/' . $this->params->action);
   }
   ?>
-
+  
   <?php echo $this->Html->script('lib/modernizr') ?>
   
 </head>
@@ -67,9 +67,7 @@
                   echo $this->Html->script($this->params->controller . '/' . $this->params->action);
                   }
                   ?>
-                  
-                 
-                  
+
                   <?php echo $this->Html->script(
                     array(
                       'lib/bootstrap.min',
@@ -85,7 +83,6 @@
                         g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
                         s.parentNode.insertBefore(g,s)}(document,'script'));
                       </script>
-                      
                       <script type="text/javascript">App.init();</script>
                     </body>
                     </html>

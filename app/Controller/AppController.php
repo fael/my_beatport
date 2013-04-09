@@ -34,8 +34,8 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 	public $components = array('DebugKit.Toolbar', 'Session', 'Auth', 'Session', 'Error', 'RequestHandler');
     public $helpers = array('Form', 'Html', 'Js', 'Time', 'Favorites.Favorites');
-    
-	public function beforeFilter()
+
+ 	public function beforeFilter()
 	{
 		$this->Auth->authenticate = array('Form');
 
