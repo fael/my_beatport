@@ -7,14 +7,45 @@ App::uses('AppController', 'Controller');
  */
 class TracksController extends AppController {
 
+	public function beforeFilter()
+	{
+		parent::beforeFilter();
+
+		$this->Auth->allow('*');
+	}
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
-		$this->Track->recursive = 0;
-		$this->set('tracks', $this->paginate());
+        $labels = $this->Track->Label->find('list', array('order' => array('Label.name')));
+		$artists = $this->Track->Artist->find('list', array('order' => array('Artist.name')));
+		$genres = $this->Track->Genre->find('list', array('order' => array('Genre.name')));
+        
+		// get posts        
+        //$this->Post->contain($contain); // required if you are using Containable
+        //$this->paginate['reset']=false; // required if you are using Containable
+        $tracks = $this->paginate();
+        
+        $Favorite = ClassRegistry::init('Favorites.favorite');
+        $userFavorites = $Favorite->getAllFavorites( $this->Auth->user('id') );
+        
+        $this->set(compact('tracks', 'labels', 'artists', 'genres', 'userFavorites'));
+	}
+    
+    public function favorites() {
+        $labels = $this->Track->Label->find('list', array('order' => array('Label.name')));
+		$artists = $this->Track->Artist->find('list', array('order' => array('Artist.name')));
+		$genres = $this->Track->Genre->find('list', array('order' => array('Genre.name')));
+        
+        $Favorite = ClassRegistry::init('Favorites.favorite');
+        $userFavorites = $Favorite->getAllFavorites( $this->Auth->user('id') );
+        
+        $conditions = array('Track.id' => array_values($userFavorites['favorite']));
+        $tracks = $this->paginate($conditions);
+        
+        $this->set(compact('tracks', 'labels', 'artists', 'genres', 'userFavorites'));
 	}
 
 /**
@@ -102,4 +133,19 @@ class TracksController extends AppController {
 		$this->Session->setFlash(__('Track was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+    
+    public function search(){
+        $url = array('action' => 'index');
+        
+        // build a URL will all the search elements in it
+        // the resulting URL will be 
+        // example.com/cake/posts/index/Search.keywords:mykeyword/Search.genre_id:3
+        foreach ($this->data as $k => $v){ 
+            foreach ($v as $kk => $vv){
+                $url[$k.'.'.$kk] = $vv; 
+            }
+        }
+        
+        $this->redirect($url);
+    }
 }

@@ -7,6 +7,12 @@ App::uses('AppController', 'Controller');
  */
 class LabelsController extends AppController {
 
+	public function beforeFilter()
+	{
+		parent::beforeFilter();
+
+		$this->Auth->allow('*');
+	}
 /**
  * index method
  *
@@ -14,7 +20,22 @@ class LabelsController extends AppController {
  */
 	public function index() {
 		$this->Label->recursive = 0;
-		$this->set('labels', $this->paginate());
+        $labels = $this->paginate();
+        
+        $Favorite = ClassRegistry::init('Favorites.favorite');
+        $userFavorites = $Favorite->getAllFavorites( $this->Auth->user('id') );        
+		$this->set(compact('labels', 'userFavorites'));
+	}
+    
+    public function favorites() {
+        $this->Label->recursive = 0;
+        
+        $Favorite = ClassRegistry::init('Favorites.favorite');
+        $userFavorites = $Favorite->getAllFavorites( $this->Auth->user('id') );   
+        $conditions = array('Label.id' => array_values($userFavorites['follow']));
+        $labels = $this->paginate($conditions);
+        
+		$this->set(compact('labels', 'userFavorites'));
 	}
 
 /**

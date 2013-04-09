@@ -1,0 +1,35 @@
+.center{
+	text-align: center;
+}
+
+.change-themes-list .active{
+	font-weight: bold;
+}
+
+.strong{
+	font-weight: bold;
+}
+
+/* Modal outline fix */
+*:focus,
+a:focus{
+	outline: none;
+}
+
+#playerContainer{
+    float:right;
+    margin:5px 5px 0 0;
+    width:500px;
+    position: fixed;
+    right: 200px;
+    top:-110px;
+    transition: top 0.5s;
+}
+
+#playerContainer.active{
+    top:-5px
+}
+
+.actions .btn{
+    margin:5px 5px 0 0
+}

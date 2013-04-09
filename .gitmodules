@@ -1,0 +1,3 @@
+[submodule "app/Plugin/CakeBootstrappifier"]
+	path = app/Plugin/CakeBootstrappifier
+	url = https://github.com/mtkocak/Cakephp-Bootstrappifier.git

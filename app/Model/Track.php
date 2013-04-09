@@ -15,6 +15,8 @@ class Track extends AppModel {
  * @var string
  */
 	public $displayField = 'title';
+    
+    public $actsAs = array('Favorites.Favorite');
 
 /**
  * Validation rules

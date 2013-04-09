@@ -1,62 +1,91 @@
-<?php
-/**
- *
- * PHP 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.View.Layouts
- * @since         CakePHP(tm) v 0.10.0.1076
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
-
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
-?>
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
-	</title>
-	<?php
-		echo $this->Html->meta('icon');
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title><?php echo Configure::read('Application.name') ?> - <?php echo !empty($title_for_layout) ? $title_for_layout : ''; ?></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
 
-		echo $this->Html->css('cake.generic');
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <style>
+  body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+  </style>
+  <?php echo $this->Html->css('normalize.css') ?>
+  <?php echo $this->Html->css('bootstrap-'.Configure::read('Layout.theme').'.min', null, array('data-extra' => 'theme')) ?>
+  <?php echo $this->Html->css('bootstrap-responsive.min') ?>
+  <?php echo $this->Html->css('style') ?>
 
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
-	?>
+  <?php
+  if (is_file(WWW_ROOT . 'css' . DS . $this->params->controller . '.css')) {
+  echo $this->Html->css($this->params->controller);
+  }
+  if (is_file(WWW_ROOT . 'css' . DS . $this->params->controller . DS . $this->params->action . '.css')) {
+  echo $this->Html->css($this->params->controller . '/' . $this->params->action);
+  }
+  ?>
+
+  <?php echo $this->Html->script('lib/modernizr') ?>
+  
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
-		<div id="content">
+  <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+      <![endif]-->
 
-			<?php echo $this->Session->flash(); ?>
+    <?php echo $this->element('header'); ?>
+            
 
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
-		</div>
-	</div>
-	<?php echo $this->element('sql_dump'); ?>
-</body>
-</html>
+                  <div class="container-fluid" role="main" id="main">
+
+                    <?php echo $this->Session->flash();?>
+                    <?php echo $this->fetch('content'); ?>
+                
+                    <br class="clear"/>
+                    <hr />
+
+                    <footer>
+                      <p>&copy; <?php echo Configure::read('Application.name') ?> 2012</p>
+                    </footer>
+
+                  </div> <!-- /container -->
+
+                  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+                  <script>window.jQuery || document.write('<script src="<?php echo $this->params->webroot ?>js/lib/jquery.min.js"><\/script>')</script>
+
+                  <?php
+                  if (is_file(WWW_ROOT . 'js' . DS . $this->params->controller . '.js')) {
+                  echo $this->Html->script($this->params->controller);
+                  }
+                  if (is_file(WWW_ROOT . 'js' . DS . $this->params->controller . DS . $this->params->action . '.js')) {
+                  echo $this->Html->script($this->params->controller . '/' . $this->params->action);
+                  }
+                  ?>
+                  
+                 
+                  
+                  <?php echo $this->Html->script(
+                    array(
+                      'lib/bootstrap.min',
+                      'src/scripts.js',
+                      'app'
+                      ));
+                      ?>
+
+                      <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+                      <script>
+                      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+                      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+                        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+                        s.parentNode.insertBefore(g,s)}(document,'script'));
+                      </script>
+                      
+                      <script type="text/javascript">App.init();</script>
+                    </body>
+                    </html>
